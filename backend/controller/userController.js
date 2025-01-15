@@ -1,9 +1,9 @@
 const express = require('express');
 const path = require('path');
-const user = require('..model/user');
+const user = require('../model/userModel');
 const router = express.Router();
-const {upload} = require('../multer');
-const ErrorHandler = require('../utils/errorHandler');
+const {upload} = require('../middleware/multer');
+const ErrorHandler = require('../utils/ErrorHandler');
 const { nextTick } = require('process');
 
 // create user

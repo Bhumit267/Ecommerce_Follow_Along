@@ -69,7 +69,7 @@ const userSchema = new mongoose.Schema({
         },
     },
     creareAt:{
-        type: DataTransfer,
+        type: Date,
         default: Date.now(),
     },
     resetPasswordToken: String,
