@@ -35,14 +35,12 @@ const SignupPage = () => {
         const config = {
             headers: {
                 "Content-type": "multipart/form-data",
-                Accept: "any",
+                "Accept": "any",
             },
         };
 
-        axios
-            .post("http://localhost:8000/api/v2/user/create-user", newForm, config)
-            .then((res) => {
-                console.log(res.data);
+        axios.post("http://localhost:8000/api/v2/user/create-user", newForm, config).then((res) => {
+             console.log(res.data);
             })
             .catch((err) => {
                 console.log(err);
