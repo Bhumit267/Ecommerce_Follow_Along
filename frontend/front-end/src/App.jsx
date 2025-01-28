@@ -1,22 +1,23 @@
-import React from "react";
-import { BrowserRouter,Routes,Route } from "react-router-dom";
-import './App.css';
-import { LoginPage, Home } from "./Routes/Routes.js";
-import { SignupPage } from "./Routes/Routes.js"
+import './App.css'
+// eslint-dis4able-next-line
+import * as reactRouterDom from 'react-router-dom';
+import {LoginPage, Home} from './Routes/Routes.js';
+import {SignupPage, CreateProduct} from './Routes/Routes.js';
 
 
 
-const App = () => { 
+const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage/>} />
+    <reactRouterDom.BrowserRouter>
+    <reactRouterDom.Routes>
+      <reactRouterDom.Route path="/" element={<Home />} />
+      <reactRouterDom.Route path="/login" element={<LoginPage />} />
+      <reactRouterDom.Route path="/signup" element={<SignupPage/>} />
+      <reactRouterDom.Route path="/product" element={<CreateProduct/>} />
 
-      </Routes>
-    </BrowserRouter>
+    </reactRouterDom.Routes>
+    </reactRouterDom.BrowserRouter>  
   )
-}
+}  
 
-export default App
+export default App;

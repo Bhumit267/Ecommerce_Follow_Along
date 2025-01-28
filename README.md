@@ -380,3 +380,85 @@ Here’s a quick breakdown of the login process:
    - Authenticate the user if they match.  
 
 ---
+
+## * Milestone 8 *
+In **Milestone 8**, we’ll build a **reusable card component** and design a **homepage** to display product cards.
+
+---
+
+## 🎯 Goals
+- Create reusable **card components**.
+- Dynamically display cards on the homepage.
+
+---
+
+## Why Card Components?
+- **Show Products Clearly**: Neat and appealing display.  
+- **Reusable Design**: Use across pages.  
+- **Better UX**: Simplifies browsing.  
+- **Organized Layout**: Clean homepage structure.
+
+---
+
+## Steps
+
+### 1. Build the Card Component
+- Add props for product **name**, **image**, and **price**.
+
+### 2. Design Homepage Layout
+- Use **grid** or **flexbox** for a neat arrangement of cards.
+
+---
+# 📦 Product Form Creation (Milestone 9)
+# Milestone **9**
+
+---
+
+## 🤔 Why Build a Product Form?  
+- The product form is crucial for collecting detailed information about each product.  
+- These details will be stored in the database and displayed on the product homepage we created in the previous milestone.  
+- This task forms the foundation of your product management feature.  
+
+---
+
+## 📝Complete Milestone 9  
+
+1. **Create the Form for Products**  
+   - Design a frontend form that collects all the necessary product details (e.g., name, price, description).  
+
+2. **Handle Multiple Images**  
+   - Add functionality to allow users to upload multiple product images.  
+
+---
+# 🛠️ Mongoose Schema and Endpoint Creation (Milestone 10)
+
+# **Milestone 10,** 
+
+---
+
+## 📚 What I have Done:  
+
+### **1. Product Schema**  
+- Define the structure for your product data, including fields like:  
+  - **Name**: The name of the product.  
+  - **Description**: A short overview of the product.  
+  - **Price**: The product price.  
+  - **Image URLs**: URLs for product images.  
+- Add **validations** for each field, such as:  
+  - Making required fields mandatory.  
+  - Ensuring correct data types (e.g., strings, numbers).  
+
+### **2. Endpoint Creation**  
+- Build a `POST` endpoint that will:  
+  1. Accept product data from the frontend.  
+  2. Validate the incoming data using the schema.  
+  3. Save the valid data into your MongoDB database.  
+
+---
+
+## 🔒 Why Validation Matters  
+
+- **Data Integrity**: Ensures only clean, accurate, and valid data gets stored in the database.  
+- **Error Prevention**: Helps catch mistakes early, improving application reliability.  
+
+---
