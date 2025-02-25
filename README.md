@@ -107,25 +107,38 @@ Integrate backend API for user authentication.
 Implement proper error handling and form validation.
 Enhance UI/UX by displaying success or error messages after login attempts.
 
-### Milestone 3 Overview
-In this milestone, I have successfully implemented the following key features for the backend project:
+# Milestone 3: Backend Project Setup and Key Features
 
-Backend Folder Structure
-I have meticulously organized the backend project files by creating a well-defined hierarchy. This includes separating essential components such as routes, controllers, models, and middleware. This structure not only ensures a clean and manageable codebase but also lays the foundation for scaling the application as new features are added. Additionally, I have started understanding terms like utils and middlewares, which play an integral role in backend development.
+## Overview
+In this milestone, I have successfully implemented several key features for the backend of the project. These include the organization of the backend folder structure, setting up the Node.js server, integrating MongoDB, and implementing error handling. Below is a detailed breakdown of each accomplishment.
 
-Node.js Server Setup
-To handle API requests efficiently, I set up a Node.js server using Express. The server has been configured to listen on a designated port, ensuring smooth communication between the client and server. This setup serves as the backbone for managing backend processes and acts as a gateway for future API integrations.
+## Key Features Implemented
 
-MongoDB Integration
-I successfully integrated MongoDB into the project, enabling efficient and reliable data storage. The integration process included setting up a connection between the server and the database, which has been thoroughly tested and confirmed. This step ensures that the application can handle data management seamlessly, paving the way for robust CRUD operations.
+### 1. **Backend Folder Structure**
+I have meticulously organized the backend project files, creating a well-defined hierarchy to ensure a clean and manageable codebase. This structure includes separate directories for:
+- **Routes**
+- **Controllers**
+- **Models**
+- **Middleware**
 
-Error Handling Implementation
-Recognizing the importance of a resilient application, I implemented basic error-handling mechanisms. These include providing clear error messages that enhance the debugging process and offer better user feedback. The error handling setup not only improves the reliability of the application but also makes it more developer-friendly for future troubleshooting and enhancements.
+This setup not only enhances code readability and maintainability but also establishes a solid foundation for scaling the application as new features are added. During this phase, I also began exploring concepts such as **utils** and **middlewares**, which are crucial for efficient backend development.
 
-Additional Notes
-Throughout this milestone, I have followed best practices to ensure that the backend code remains modular and maintainable. By adhering to a structured approach, I have set a solid groundwork that will support the development of more advanced features in subsequent milestones. This milestone also served as an opportunity to enhance my understanding of backend architecture and the integration of modern tools like MongoDB.
+### 2. **Node.js Server Setup**
+To handle API requests efficiently, I set up a Node.js server using Express. The server is configured to listen on a designated port, enabling smooth communication between the client and server. This setup serves as the backbone for backend operations and will act as a gateway for future API integrations and functionalities.
 
-With these achievements, the foundation for a robust and scalable backend system is firmly in place. Moving forward, I am well-prepared to tackle more complex functionalities, optimize the existing codebase, and ensure the backend system aligns seamlessly with the project’s overall goals.
+### 3. **MongoDB Integration**
+MongoDB has been successfully integrated into the project to manage data storage efficiently. The integration process involved setting up a connection between the server and the database, which has been thoroughly tested. This step lays the groundwork for robust CRUD (Create, Read, Update, Delete) operations and ensures reliable data management across the application.
+
+### 4. **Error Handling Implementation**
+Recognizing the importance of a resilient application, I implemented basic error-handling mechanisms. These include:
+- Clear error messages to improve debugging
+- User-friendly feedback to enhance the overall experience
+
+The error-handling setup ensures the application is more reliable and developer-friendly, laying the groundwork for smoother troubleshooting and future enhancements.
+
+---
+
+This milestone marks a significant step forward in the backend development process, and I am excited to continue building on this foundation in future milestones.
 
 ---
 # Milestone 4: Livebooks Backend Web Development
@@ -462,3 +475,329 @@ In **Milestone 8**, we’ll build a **reusable card component** and design a **h
 - **Error Prevention**: Helps catch mistakes early, improving application reliability.  
 
 ---
+# Milestone 11: Fetch and Display Products 📝
+
+## Overview
+In this milestone, we will implement an API endpoint to send all product data to the frontend. On the frontend, we will fetch this data and dynamically render it using the Product Card component.
+
+## Steps to Complete Milestone 11
+
+### Backend (API Endpoint)
+1. Create a new API route in your backend server to fetch all product data.
+2. Query the database to retrieve all products.
+3. Send the product data as a JSON response.
+
+#### Example (Node.js with Express & MongoDB)
+```javascript
+app.get('/api/products', async (req, res) => {
+    try {
+        const products = await Product.find();
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching products" });
+    }
+});
+```
+
+### Frontend (Fetching Data & Displaying Products)
+
+1. Write a function to fetch product data from the API.
+2. Store the fetched data in a state variable.
+3. Pass the data to the Product Card component and render it dynamically.
+
+#### Example (React)
+```javascript
+import { useEffect, useState } from 'react';
+import ProductCard from './ProductCard';
+
+const ProductList = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('/api/products');
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
+    return (
+        <div>
+            {products.map(product => (
+                <ProductCard key={product._id} product={product} />
+            ))}
+        </div>
+    );
+};
+
+export default ProductList;
+```
+
+### Product Card Component
+Ensure that the `ProductCard` component correctly receives and displays the product data.
+
+```javascript
+const ProductCard = ({ product }) => {
+    return (
+        <div className="product-card">
+            <h2>{product.name}</h2>
+            <p>{product.description}</p>
+            <p>Price: ${product.price}</p>
+        </div>
+    );
+};
+
+export default ProductCard;
+```
+
+## Summary
+✅ Created an API endpoint to fetch all products.
+✅ Implemented a function to retrieve product data in the frontend.
+✅ Displayed the products dynamically using the `ProductCard` component.
+
+Milestone 11 complete! 🎉
+
+---
+
+# Milestone 12: My Products Page 🌟
+
+## Milestone 12! 🌟
+
+In this milestone, we will create a "My Products" page that displays all the products added by a specific user based on their email. We will write an API endpoint that fetches products associated with the logged-in user's email, stored in MongoDB.
+
+--
+
+## Steps for Milestone 12 📝
+
+### Backend (Filtering Products by User Email)
+1. Create a new API route in the backend to fetch products filtered by the user's email.
+2. Query MongoDB to retrieve products that match the logged-in user's email.
+3. Send the filtered product data as a JSON response.
+
+#### Example (Node.js with Express & MongoDB)
+```javascript
+app.get('/api/my-products', async (req, res) => {
+    try {
+        const { email } = req.query;
+        if (!email) {
+            return res.status(400).json({ message: "Email is required" });
+        }
+        const products = await Product.find({ userEmail: email });
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching products" });
+    }
+});
+```
+
+### Frontend (Fetching and Displaying User-Specific Products)
+
+1. Write a function to fetch product data for the logged-in user.
+2. Store the fetched data in a state variable.
+3. Pass the data to the Product Card component and render it dynamically.
+
+#### Example (React)
+```javascript
+import { useEffect, useState } from 'react';
+import ProductCard from './ProductCard';
+
+const MyProducts = ({ userEmail }) => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchMyProducts = async () => {
+            try {
+                const response = await fetch(`/api/my-products?email=${userEmail}`);
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        if (userEmail) {
+            fetchMyProducts();
+        }
+    }, [userEmail]);
+
+    return (
+        <div>
+            {products.map(product => (
+                <ProductCard key={product._id} product={product} />
+            ))}
+        </div>
+    );
+};
+
+export default MyProducts;
+```
+
+### Product Card Component
+Ensure that the `ProductCard` component correctly receives and displays the product data.
+
+```javascript
+const ProductCard = ({ product }) => {
+    return (
+        <div className="product-card">
+            <h2>{product.name}</h2>
+            <p>{product.description}</p>
+            <p>Price: ${product.price}</p>
+        </div>
+    );
+};
+
+export default ProductCard;
+```
+
+## Summary
+✅ Created an API endpoint to fetch user-specific products.
+✅ Implemented a function to retrieve filtered product data in the frontend.
+✅ Displayed the products dynamically using the `ProductCard` component.
+
+This lesson helps in understanding how to filter data with specific constraints and send it to the client efficiently. 🎯
+
+Milestone 12 complete! 
+
+---
+
+
+# Milestone 13 - Edit Uploaded Products 🌟
+
+Today, we will add functionality to edit the uploaded products. We will add an edit button and then write a backend endpoint to update the new details inside the MongoDB database.
+
+## Learning Goals 🎯
+
+- How to write an endpoint that updates existing data in MongoDB.  
+- How to auto-fill the form with previous data and provide an option to edit.
+
+## Steps for Milestone 13 📝
+
+1. Write an endpoint that receives new data and updates the existing data inside MongoDB.  
+2. In the frontend, add an edit button to the product card.  
+3. When the edit button is clicked, send the existing data to the form, auto-fill it, and allow editing.  
+4. Save the updated data back to the database. 
+
+
+---
+
+# Milestone 14 - Delete Products from MongoDB 🗑️
+
+In this milestone, we will implement functionality to delete a product using its specific ID from MongoDB.
+
+## Learning Goals 🎯
+
+
+- How to write an endpoint that deletes a product using its ID from MongoDB.
+
+## Steps for Milestone 14 📝
+
+1. Write an endpoint that deletes data from MongoDB using the product ID.  
+2. In the frontend, add a delete button to the product card.  
+3. When the delete button is clicked, send the product ID to the server endpoint.  
+
+**Note:** This lesson will help you understand the delete operation in detail.  
+
+---
+
+# Milestone 15: Navigation Component 📝
+
+### 1. Create a New `Nav` Component
+- The `Nav` component should contain links to the following pages:
+  - Home
+  - My Products
+  - Add Product
+  - Cart
+
+### 2. Make the Navbar Responsive
+- Ensure the `Nav` component is fully responsive across all screen sizes.
+- Use CSS media queries or a framework like Tailwind CSS or Bootstrap for styling.
+
+### 3. Add the `Nav` Component to All Pages
+- Include the `Nav` component in all pages of the application.
+- Implement smooth navigation to ensure a seamless user experience.
+
+## Learning Outcomes
+- Understand  to create a navigation bar in a web application.
+- Learn to implement responsive design for better usability.
+- Enhance your skills in linking multiple pages for smooth navigation.
+
+---
+
+# Milestone 16 - Product Info Page  
+
+### will create a product info page that displays all the product data, allows users to choose the quantity, and includes an "Add to Cart" button.  
+
+## Learning Goals 🎯  
+By the end of this milestone:  
+- How to create a new page to display each product.  
+- How to add a quantity selector and an "Add to Cart" button.  
+
+## Steps for Milestone 16 📝  
+1. Create a new page that displays all the product data.  
+2. Implement a quantity selector for each product.  
+3. Add an "Add to Cart" button to allow users to add products with the selected quantity.
+
+
+---
+
+# Milestone 17: Cart Functionality
+
+## Overview
+In this milestone,work on implementing cart functionality. The goal is to store product details in a user's cart and create an endpoint to receive and store these details in the database.
+
+## Steps for Milestone 17 📝
+
+### 1. Edit the User Schema to Store Cart Products
+- Modify the user schema to include a field that will hold product details in the cart.
+
+### 2. Write the Cart Schema to Store Products
+- Create a new schema for the cart that can store product details such as product ID, quantity, and other necessary attributes.
+
+### 3. Write an Endpoint to Receive and Store Product Details in the Cart
+- Create a new endpoint that will receive product details from the frontend and store them in the database, specifically in the cart.
+
+---
+
+# Milestone 18: Cart Functionality - Backend Endpoints
+
+## Overview
+In this milestone, work on backend functionality for the cart. The goal is to create endpoints that handle requests from the cart page and retrieve product details for a user’s cart.
+
+## By the End of This Milestone,
+
+- Create an endpoint to receive requests from the cart page.
+- Create a backend endpoint to fetch all the products inside the cart based on the user's email.
+
+## Steps for Milestone 18 📝
+
+### 1. Create a Backend Endpoint for Cart Page
+- Implement an endpoint that will receive requests from the frontend (cart page) and store/update products in the user's cart.
+
+### 2. Write an Endpoint to Get Products Inside Cart for a User
+- Create a new endpoint that will fetch and return all the products inside the cart for a specific user, identified by their email.
+
+---
+
+# 🛒 Cart Functionality - Milestone 19
+
+## 🎯 Learning Goals
+- Build a cart page that displays products inside the cart using the endpoint created in Milestone 18.
+- Implement an option to increase and decrease product quantity using `+` and `-` buttons.
+- Develop backend endpoints to handle quantity updates dynamically.
+
+## 📝 Steps for Milestone 19
+1. **Create the Cart Page**
+   - Develop the frontend page to display products in the cart.
+   
+2. **Add Quantity Controls**
+   - Implement `+` and `-` buttons for each product to allow users to adjust the quantity.
+   
+3. **Set Up Backend Endpoints**
+   - Write API endpoints to increase and decrease product quantity based on user actions.
+   
