@@ -12,11 +12,11 @@ const connectDatabase = () => {
             useUnifiedTopology: true,
         })
         .then((data) => {
-            console.log(`✅Database connected successfully: ${data.connection.host}`);
+            console.log(`Database connected successfully: ${data.connection.host}`);
         })
         .catch((err) => {
-            console.error("❌Database connection failed:", err.message);
-            process.exit(1);
+            console.error("Database connection failed:", err.message);
+
         });
 };
 
