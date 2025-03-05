@@ -550,61 +550,51 @@ This milestone enhances user profile management by integrating backend data retr
 
 ---
 
-## **Milestone 21: Address Input Form** ##
-
-## Overview
-In this milestone, we created a frontend page for address input that allows users to enter and store their address details. The form includes fields for country, city, address lines, zip code, and address type.
-
-## Learning Goals 🎯
-By completing this milestone, you have:
-- Created a frontend form to collect address details.
-- Implemented state management to store the input address.
-- Set up navigation from the profile page to the address form page.
-- Gained a deeper understanding of handling user inputs in forms.
-
-## Features
-- **User Input Fields:**
-  - Country
-  - City
-  - Address Line 1
-  - Address Line 2
-  - Zip Code
-  - Address Type (Home/Work/Other)
-- **State Management:**
-  - The form data is stored in a state to handle user input dynamically.
-- **Navigation:**
-  - Clicking "Add Address" on the profile page navigates to the address form page.
-- **Validation:**
-  - Ensures required fields are filled before submission.
-
-
-## Conclusion
-This milestone helped in understanding how to create a structured address input form, manage state effectively, and enable seamless navigation within a React application.
-
+## 🤔 Why Build a Product Form?  
+- The product form is crucial for collecting detailed information about each product.  
+- These details will be stored in the database and displayed on the product homepage we created in the previous milestone.  
+- This task forms the foundation of your product management feature.  
 
 ---
 
-## **Milestone 22: Address Storage Endpoint** ##
+## 📝Complete Milestone 9  
 
-## Overview
-In this milestone, we created a backend endpoint that receives the address details from the frontend and stores them inside the user's profile in the database.
+1. **Create the Form for Products**  
+   - Design a frontend form that collects all the necessary product details (e.g., name, price, description).  
 
-## Learning Goals 🎯
-By completing this milestone, you have:
-- Created a backend endpoint to handle address data.
-- Implemented logic to add the address to the address array inside the user collection.
-- Understood how to handle API requests and database updates.
+2. **Handle Multiple Images**  
+   - Add functionality to allow users to upload multiple product images.  
 
-## Features
-- **Endpoint Creation:**
-  - Receives address data from the frontend form.
-  - Validates the address input before storing it.
-- **Database Integration:**
-  - Adds the address to the address array in the user collection.
-  - Ensures the user profile is updated correctly.
-- **Error Handling:**
-  - Returns appropriate responses for success or failure cases.
+---
+# 🛠️ Mongoose Schema and Endpoint Creation (Milestone 10)
 
+# **Milestone 10,** 
 
-## Conclusion
-This milestone helped in understanding how to create and integrate a backend API that stores user addresses in the database. The knowledge gained will be useful for handling user profiles dynamically in future projects.
+---
+
+## 📚 What I have Done:  
+
+### **1. Product Schema**  
+- Define the structure for your product data, including fields like:  
+  - **Name**: The name of the product.  
+  - **Description**: A short overview of the product.  
+  - **Price**: The product price.  
+  - **Image URLs**: URLs for product images.  
+- Add **validations** for each field, such as:  
+  - Making required fields mandatory.  
+  - Ensuring correct data types (e.g., strings, numbers).  
+
+### **2. Endpoint Creation**  
+- Build a `POST` endpoint that will:  
+  1. Accept product data from the frontend.  
+  2. Validate the incoming data using the schema.  
+  3. Save the valid data into your MongoDB database.  
+
+---
+
+## 🔒 Why Validation Matters  
+
+- **Data Integrity**: Ensures only clean, accurate, and valid data gets stored in the database.  
+- **Error Prevention**: Helps catch mistakes early, improving application reliability.  
+
+---
